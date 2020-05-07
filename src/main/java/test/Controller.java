@@ -18,43 +18,32 @@ public class Controller {
     int CountsBlack = 12;
     int MoveTime = 0;
 
+
+    boolean IsCorrectSecond(Circle x){
+        if(!IsUnderAttack(Integer.parseInt(x.getId())+11+"", (Color) x.getFill())&&IsEmpty(Integer.parseInt(x.getId())+22+"")||(!IsUnderAttack(Integer.parseInt(x.getId())+9+"", (Color) x.getFill())&&IsEmpty(Integer.parseInt(x.getId())+18+""))||(!IsUnderAttack(Integer.parseInt(x.getId())-11+"", (Color) x.getFill())&&IsEmpty(Integer.parseInt(x.getId())-22+""))||(!IsUnderAttack(Integer.parseInt(x.getId())-9+"", (Color) x.getFill()))&&IsEmpty(Integer.parseInt(x.getId())-18+""))return false;
+        return true;
+    }
     boolean IsCorrect(){
         Circle[] list = {A3,C3,E3,G3,B2,D2,F2,H2,A1,C1,E1,G1,H6,F6,D6,B6,G7,E7,C7,A7,H8,F8,D8,B8};
         for(int i=0;i<list.length;i++){
-            if((!IsUnderAttack(Integer.parseInt(list[i].getId())+11+"", (Color) list[i].getFill())&&IsEmpty(Integer.parseInt(list[i].getId())+22+""))||(!IsUnderAttack(Integer.parseInt(list[i].getId())+9+"", (Color) list[i].getFill())&&IsEmpty(Integer.parseInt(list[i].getId())+18+""))||(!IsUnderAttack(Integer.parseInt(list[i].getId())-11+"", (Color) list[i].getFill())&&IsEmpty(Integer.parseInt(list[i].getId())-22+""))||(!IsUnderAttack(Integer.parseInt(list[i].getId())-9+"", (Color) list[i].getFill()))&&IsEmpty(Integer.parseInt(list[i].getId())-18+""))return false;
+            if((!IsUnderAttack(Integer.parseInt(list[i].getId())+11+"", (Color) list[i].getFill())&&IsEmpty(Integer.parseInt(list[i].getId())+22+""))||(!IsUnderAttack(Integer.parseInt(list[i].getId())+9+"", (Color) list[i].getFill())&&IsEmpty(Integer.parseInt(list[i].getId())+18+""))||(!IsUnderAttack(Integer.parseInt(list[i].getId())-11+"", (Color) list[i].getFill())&&IsEmpty(Integer.parseInt(list[i].getId())-22+""))||(!IsUnderAttack(Integer.parseInt(list[i].getId())-9+"", (Color) list[i].getFill()))&&IsEmpty(Integer.parseInt(list[i].getId())-18+"")) return false;
         }
         return true;
     }
 
     boolean IsUnderAttack(String x, Color c){
-        if(MoveTime==1) {
-            if (A3.getId().equals(x) && !A3.getFill().equals(c)) return false;
-            if (C3.getId().equals(x) && !C3.getFill().equals(c)) return false;
-            if (E3.getId().equals(x) && !E3.getFill().equals(c)) return false;
-            if (G3.getId().equals(x) && !G3.getFill().equals(c)) return false;
-            if (B2.getId().equals(x) && !B2.getFill().equals(c)) return false;
-            if (D2.getId().equals(x) && !D2.getFill().equals(c)) return false;
-            if (F2.getId().equals(x) && !F2.getFill().equals(c)) return false;
-            if (H2.getId().equals(x) && !H2.getFill().equals(c)) return false;
-            if (A1.getId().equals(x) && !A1.getFill().equals(c)) return false;
-            if (C1.getId().equals(x) && !C1.getFill().equals(c)) return false;
-            if (E1.getId().equals(x) && !E1.getFill().equals(c)) return false;
-            if (G1.getId().equals(x) && !G1.getFill().equals(c)) return false;
-        }
-        if(MoveTime==0) {
-            if (H6.getId().equals(x) && !H6.getFill().equals(c)) return false;
-            if (F6.getId().equals(x) && !F6.getFill().equals(c)) return false;
-            if (D6.getId().equals(x) && !D6.getFill().equals(c)) return false;
-            if (B6.getId().equals(x) && !B6.getFill().equals(c)) return false;
-            if (G7.getId().equals(x) && !G7.getFill().equals(c)) return false;
-            if (E7.getId().equals(x) && !E7.getFill().equals(c)) return false;
-            if (C7.getId().equals(x) && !C7.getFill().equals(c)) return false;
-            if (A7.getId().equals(x) && !A7.getFill().equals(c)) return false;
-            if (H8.getId().equals(x) && !H8.getFill().equals(c)) return false;
-            if (F8.getId().equals(x) && !F8.getFill().equals(c)) return false;
-            if (D8.getId().equals(x) && !D8.getFill().equals(c)) return false;
-            if (B8.getId().equals(x) && !B8.getFill().equals(c)) return false;
-        }
+
+        Circle[] list = {A3,C3,E3,G3,B2,D2,F2,H2,A1,C1,E1,G1,H6,F6,D6,B6,G7,E7,C7,A7,H8,F8,D8,B8};
+            if (MoveTime == 1) {
+                for(int i=0;i<=11;i++){
+                    if(list[i].getId().equals(x)&&!list[i].getFill().equals(c)&&!list[i].getFill().equals(Color.BLUE))return false;
+                }
+            }
+            if (MoveTime == 0) {
+                for(int i=12;i<list.length;i++){
+                    if(list[i].getId().equals(x)&&!list[i].getFill().equals(c)&&!list[i].getFill().equals(Color.RED))return false;
+                }
+            }
         return true;
     }
 
@@ -62,30 +51,30 @@ public class Controller {
     private Button reset;
 
     void Reset(){
-        A1.setId("11");A1.setLayoutX(a1.getLayoutX()+18);A1.setLayoutY(a1.getLayoutY()+18);A1.setVisible(true);
-        C1.setId("31");C1.setLayoutX(c1.getLayoutX()+18);C1.setLayoutY(c1.getLayoutY()+18);C1.setVisible(true);
-        E1.setId("51");E1.setLayoutX(e1.getLayoutX()+18);E1.setLayoutY(e1.getLayoutY()+18);E1.setVisible(true);
-        G1.setId("71");G1.setLayoutX(g1.getLayoutX()+18);G1.setLayoutY(g1.getLayoutY()+18);G1.setVisible(true);
-        B2.setId("22");B2.setLayoutX(b2.getLayoutX()+18);B2.setLayoutY(b2.getLayoutY()+18);B2.setVisible(true);
-        D2.setId("42");D2.setLayoutX(d2.getLayoutX()+18);D2.setLayoutY(d2.getLayoutY()+18);D2.setVisible(true);
-        F2.setId("62");F2.setLayoutX(f2.getLayoutX()+18);F2.setLayoutY(f2.getLayoutY()+18);F2.setVisible(true);
-        H2.setId("82");H2.setLayoutX(h2.getLayoutX()+18);H2.setLayoutY(h2.getLayoutY()+18);H2.setVisible(true);
-        A3.setId("13");A3.setLayoutX(a3.getLayoutX()+18);A3.setLayoutY(a3.getLayoutY()+18);A3.setVisible(true);
-        C3.setId("33");C3.setLayoutX(c3.getLayoutX()+18);C3.setLayoutY(c3.getLayoutY()+18);C3.setVisible(true);
-        E3.setId("53");E3.setLayoutX(e3.getLayoutX()+18);E3.setLayoutY(e3.getLayoutY()+18);E3.setVisible(true);
-        G3.setId("73");G3.setLayoutX(g3.getLayoutX()+18);G3.setLayoutY(g3.getLayoutY()+18);G3.setVisible(true);
-        B6.setId("26");B6.setLayoutX(b6.getLayoutX()+18);B6.setLayoutY(b6.getLayoutY()+18);B6.setVisible(true);
-        D6.setId("46");D6.setLayoutX(d6.getLayoutX()+18);D6.setLayoutY(d6.getLayoutY()+18);D6.setVisible(true);
-        F6.setId("66");F6.setLayoutX(f6.getLayoutX()+18);F6.setLayoutY(f6.getLayoutY()+18);F6.setVisible(true);
-        H6.setId("86");H6.setLayoutX(h6.getLayoutX()+18);H6.setLayoutY(h6.getLayoutY()+18);H6.setVisible(true);
-        G7.setId("77");G7.setLayoutX(g7.getLayoutX()+18);G7.setLayoutY(g7.getLayoutY()+18);G7.setVisible(true);
-        E7.setId("57");E7.setLayoutX(e7.getLayoutX()+18);E7.setLayoutY(e7.getLayoutY()+18);E7.setVisible(true);
-        C7.setId("37");C7.setLayoutX(c7.getLayoutX()+18);C7.setLayoutY(c7.getLayoutY()+18);C7.setVisible(true);
-        A7.setId("17");A7.setLayoutX(a7.getLayoutX()+18);A7.setLayoutY(a7.getLayoutY()+18);A7.setVisible(true);
-        B8.setId("28");B8.setLayoutX(b8.getLayoutX()+18);B8.setLayoutY(b8.getLayoutY()+18);B8.setVisible(true);
-        D8.setId("48");D8.setLayoutX(d8.getLayoutX()+18);D8.setLayoutY(d8.getLayoutY()+18);D8.setVisible(true);
-        F8.setId("68");F8.setLayoutX(f8.getLayoutX()+18);F8.setLayoutY(f8.getLayoutY()+18);F8.setVisible(true);
-        H8.setId("88");H8.setLayoutX(h8.getLayoutX()+18);H8.setLayoutY(h8.getLayoutY()+18);H8.setVisible(true);
+        A1.setId("11");A1.setLayoutX(a1.getLayoutX()+18);A1.setLayoutY(a1.getLayoutY()+18);A1.setVisible(true);A1.setFill(new Color(227f / 255f, 231f / 255f, 235f / 255f, 1));
+        C1.setId("31");C1.setLayoutX(c1.getLayoutX()+18);C1.setLayoutY(c1.getLayoutY()+18);C1.setVisible(true);C1.setFill(new Color(227f / 255f, 231f / 255f, 235f / 255f, 1));
+        E1.setId("51");E1.setLayoutX(e1.getLayoutX()+18);E1.setLayoutY(e1.getLayoutY()+18);E1.setVisible(true);E1.setFill(new Color(227f / 255f, 231f / 255f, 235f / 255f, 1));
+        G1.setId("71");G1.setLayoutX(g1.getLayoutX()+18);G1.setLayoutY(g1.getLayoutY()+18);G1.setVisible(true);G1.setFill(new Color(227f / 255f, 231f / 255f, 235f / 255f, 1));
+        B2.setId("22");B2.setLayoutX(b2.getLayoutX()+18);B2.setLayoutY(b2.getLayoutY()+18);B2.setVisible(true);B2.setFill(new Color(227f / 255f, 231f / 255f, 235f / 255f, 1));
+        D2.setId("42");D2.setLayoutX(d2.getLayoutX()+18);D2.setLayoutY(d2.getLayoutY()+18);D2.setVisible(true);D2.setFill(new Color(227f / 255f, 231f / 255f, 235f / 255f, 1));
+        F2.setId("62");F2.setLayoutX(f2.getLayoutX()+18);F2.setLayoutY(f2.getLayoutY()+18);F2.setVisible(true);F2.setFill(new Color(227f / 255f, 231f / 255f, 235f / 255f, 1));
+        H2.setId("82");H2.setLayoutX(h2.getLayoutX()+18);H2.setLayoutY(h2.getLayoutY()+18);H2.setVisible(true);H2.setFill(new Color(227f / 255f, 231f / 255f, 235f / 255f, 1));
+        A3.setId("13");A3.setLayoutX(a3.getLayoutX()+18);A3.setLayoutY(a3.getLayoutY()+18);A3.setVisible(true);A3.setFill(new Color(227f / 255f, 231f / 255f, 235f / 255f, 1));
+        C3.setId("33");C3.setLayoutX(c3.getLayoutX()+18);C3.setLayoutY(c3.getLayoutY()+18);C3.setVisible(true);C3.setFill(new Color(227f / 255f, 231f / 255f, 235f / 255f, 1));
+        E3.setId("53");E3.setLayoutX(e3.getLayoutX()+18);E3.setLayoutY(e3.getLayoutY()+18);E3.setVisible(true);E3.setFill(new Color(227f / 255f, 231f / 255f, 235f / 255f, 1));
+        G3.setId("73");G3.setLayoutX(g3.getLayoutX()+18);G3.setLayoutY(g3.getLayoutY()+18);G3.setVisible(true);G3.setFill(new Color(227f / 255f, 231f / 255f, 235f / 255f, 1));
+        B6.setId("26");B6.setLayoutX(b6.getLayoutX()+18);B6.setLayoutY(b6.getLayoutY()+18);B6.setVisible(true);B6.setFill(new Color(150f / 255f, 164f / 255f, 178f / 255f, 1));
+        D6.setId("46");D6.setLayoutX(d6.getLayoutX()+18);D6.setLayoutY(d6.getLayoutY()+18);D6.setVisible(true);D6.setFill(new Color(150f / 255f, 164f / 255f, 178f / 255f, 1));
+        F6.setId("66");F6.setLayoutX(f6.getLayoutX()+18);F6.setLayoutY(f6.getLayoutY()+18);F6.setVisible(true);F6.setFill(new Color(150f / 255f, 164f / 255f, 178f / 255f, 1));
+        H6.setId("86");H6.setLayoutX(h6.getLayoutX()+18);H6.setLayoutY(h6.getLayoutY()+18);H6.setVisible(true);H6.setFill(new Color(150f / 255f, 164f / 255f, 178f / 255f, 1));
+        G7.setId("77");G7.setLayoutX(g7.getLayoutX()+18);G7.setLayoutY(g7.getLayoutY()+18);G7.setVisible(true);G7.setFill(new Color(150f / 255f, 164f / 255f, 178f / 255f, 1));
+        E7.setId("57");E7.setLayoutX(e7.getLayoutX()+18);E7.setLayoutY(e7.getLayoutY()+18);E7.setVisible(true);E7.setFill(new Color(150f / 255f, 164f / 255f, 178f / 255f, 1));
+        C7.setId("37");C7.setLayoutX(c7.getLayoutX()+18);C7.setLayoutY(c7.getLayoutY()+18);C7.setVisible(true);C7.setFill(new Color(150f / 255f, 164f / 255f, 178f / 255f, 1));
+        A7.setId("17");A7.setLayoutX(a7.getLayoutX()+18);A7.setLayoutY(a7.getLayoutY()+18);A7.setVisible(true);A7.setFill(new Color(150f / 255f, 164f / 255f, 178f / 255f, 1));
+        B8.setId("28");B8.setLayoutX(b8.getLayoutX()+18);B8.setLayoutY(b8.getLayoutY()+18);B8.setVisible(true);B8.setFill(new Color(150f / 255f, 164f / 255f, 178f / 255f, 1));
+        D8.setId("48");D8.setLayoutX(d8.getLayoutX()+18);D8.setLayoutY(d8.getLayoutY()+18);D8.setVisible(true);D8.setFill(new Color(150f / 255f, 164f / 255f, 178f / 255f, 1));
+        F8.setId("68");F8.setLayoutX(f8.getLayoutX()+18);F8.setLayoutY(f8.getLayoutY()+18);F8.setVisible(true);F8.setFill(new Color(150f / 255f, 164f / 255f, 178f / 255f, 1));
+        H8.setId("88");H8.setLayoutX(h8.getLayoutX()+18);H8.setLayoutY(h8.getLayoutY()+18);H8.setVisible(true);H8.setFill(new Color(150f / 255f, 164f / 255f, 178f / 255f, 1));
         MoveTime=0;
     }
 
@@ -146,7 +135,7 @@ public class Controller {
             if(cl.equals(Color.BLUE)) {
                 if (circle.getFill().equals(new Color(150f / 255f, 164f / 255f, 178f / 255f, 1)) || circle.getFill().equals(Color.RED)) {
                     circle.setVisible(false);
-                    circle.setId("");
+                    circle.setId("-20");
                     CountsBlack--;
                 }
                 else  k=2;
@@ -154,7 +143,7 @@ public class Controller {
             else
                 if(circle.getFill().equals(new Color(227f / 255f, 231f / 255f, 235f / 255f, 1)) || circle.getFill().equals(Color.BLUE)){
                     circle.setVisible(false);
-                    circle.setId("");
+                    circle.setId("-20");
                     CountsWhite--;
                 }
                 else  k=2;
@@ -243,7 +232,7 @@ public class Controller {
                         x.setLayoutY(y.getLayoutY() + 18);
                         x.setId(y.getId());
                         CountsBlack--;
-                        if(IsCorrect())
+                        if(IsCorrectSecond(x))
                         MoveTime=1;
                     }
                 }
@@ -266,7 +255,7 @@ public class Controller {
                         x.setLayoutY(y.getLayoutY() + 18);
                         x.setId(y.getId());
                         CountsWhite--;
-                        if(IsCorrect())
+                        if(IsCorrectSecond(x))
                         MoveTime=0;
                     }
                 }
@@ -279,7 +268,7 @@ public class Controller {
                             x.setLayoutX(y.getLayoutX() + 18);
                             x.setLayoutY(y.getLayoutY() + 18);
                             x.setId(y.getId());
-                            MoveTime=1;
+                            MoveTime = 1;
                     }
                     if(CountsBlack == 0) System.out.println("White Win");
                 }
@@ -287,10 +276,11 @@ public class Controller {
             if(x.getFill().equals(Color.RED)&&MoveTime==1){
                 if(KingChange(Integer.parseInt(x.getId())-Integer.parseInt(y.getId()),Integer.parseInt(y.getId()),Integer.parseInt(x.getId()), Color.RED)<=1) {
                     if ((Integer.parseInt(y.getId()) - Integer.parseInt(x.getId())) % 11 == 0 || (Integer.parseInt(y.getId()) - Integer.parseInt(x.getId())) % 9 == 0) {
+
                         x.setLayoutX(y.getLayoutX() + 18);
                         x.setLayoutY(y.getLayoutY() + 18);
                         x.setId(y.getId());
-                        MoveTime=0;
+                            MoveTime = 0;
                     }
                     if(CountsWhite == 0) System.out.println("Black Win");
                 }
